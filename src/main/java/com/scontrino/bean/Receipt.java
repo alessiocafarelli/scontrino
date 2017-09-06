@@ -1,18 +1,16 @@
 package com.scontrino.bean;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.log4j.Logger;
 
 public class Receipt {
 
 	private Logger logger;
 	
-	private List<Product> productsList;
+	private ArrayList<Product> productsList;
 	private double totalCost;
 
-	public Receipt(List<Product> productsList, double totalCost) {
+	public Receipt(ArrayList<Product> productsList, double totalCost) {
 		super();
 		this.productsList = productsList;
 		this.totalCost = totalCost;
@@ -22,11 +20,11 @@ public class Receipt {
 		super();
 	}
 
-	public List<Product> getProductsList() {
+	public ArrayList<Product> getProductsList() {
 		return productsList;
 	}
 	
-	public void setProductsList(List<Product> productsList) {
+	public void setProductsList(ArrayList<Product> productsList) {
 		this.productsList = productsList;
 	}
 	
