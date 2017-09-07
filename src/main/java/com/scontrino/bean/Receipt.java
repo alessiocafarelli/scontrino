@@ -1,11 +1,14 @@
 package com.scontrino.bean;
 
 import java.util.ArrayList;
+
+import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 public class Receipt {
 
-	private Logger logger;
+//	private Logger logger;
+	private static final Logger logger = LogManager.getLogger(Receipt.class);
 	
 	private ArrayList<Product> productsList;
 	private double totalCost;
