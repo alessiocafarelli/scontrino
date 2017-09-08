@@ -1,23 +1,21 @@
 package com.scontrino.bean;
 
-import java.util.Arrays;
-
-import org.apache.commons.lang.StringUtils;
-
+import java.math.BigDecimal;
 import com.scontrino.utility.Constants;
 
 public class Product {
 
+	
 	private String typeOfProduct;
 	private String description;
 	private String flagImported;
-	private double price;
-	private double taxedPrice;
-	private double taxes;
+	private BigDecimal price;
+	private BigDecimal taxedPrice;
+	private BigDecimal taxes;
 	
 	public Product(String typeOfProduct, String description,
-			String flagImported, double price, double taxedPrice,
-			double taxes) {
+			String flagImported, BigDecimal price, BigDecimal taxedPrice,
+			BigDecimal taxes) {
 		super();
 		this.typeOfProduct = typeOfProduct;
 		this.description = description;
@@ -28,7 +26,7 @@ public class Product {
 	}
 
 	public Product(String typeOfProduct, String description,
-			String flagImported, double price) {
+			String flagImported, BigDecimal price) {
 		super();
 		this.typeOfProduct = typeOfProduct;
 		this.description = description;
@@ -53,6 +51,9 @@ public class Product {
 	}
 
 	public void setDescription(String description) {
+		if(flagImported.equalsIgnoreCase(Constants.FLAG_IMPORTED_Y)){
+			description = Constants.IMPORTED_DESC + " " + description;
+		}
 		this.description = description;
 	}
 
@@ -64,49 +65,70 @@ public class Product {
 		this.flagImported = flagImported;
 	}
 
-	public double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 
-	public double getTaxedPrice() {
-		taxedPrice = price + taxes;
+	public BigDecimal getTaxedPrice() {
 		return taxedPrice;
 	}
 
-	public void setTaxedPrice(double taxedPrice) {
+	public void setTaxedPrice(BigDecimal taxedPrice) {
 		this.taxedPrice = taxedPrice;
 	}
 
-	public double getTaxes() {
-		
-		if(price > 0){
-//			System.out.print("\n1.setTaxedPrice price = "+price);
-//			System.out.println();
-			taxes = 0.00;
-//			System.out.print("\n2.setTaxedPrice taxes = "+taxes);
-//			System.out.println();
-			if(StringUtils.isNotEmpty(typeOfProduct) &&  Arrays.asList(Constants.BASIC_TAX).contains(typeOfProduct)){
-				taxes = price/100*Constants.TAX;
-//				System.out.print("\n3.setTaxedPrice taxes = "+taxes);
-//				System.out.println();
-			}
-			
-			if(StringUtils.isNotEmpty(flagImported) && flagImported.equalsIgnoreCase(Constants.FLAG_IMPORTED_Y)){
-				taxes = taxedPrice/100*Constants.IMPORT_TAX;
-//				System.out.print("\n4.setTaxedPrice taxes = "+taxes);
-//				System.out.println();
-			}
-		}
-		
+	public BigDecimal getTaxes() {
 		return taxes;
 	}
 
-	public void setTaxes(double taxes) {
+	public void setTaxes(BigDecimal taxes) {
 		this.taxes = taxes;
 	}
+
+//	public BigDecimal getTaxedPrice() {
+//		taxedPrice = price;
+//		if((null != taxes && taxes.compareTo(BigDecimal.ZERO) > 0)){
+//			taxedPrice = price.add(taxes);
+//		}
+//		return taxedPrice;
+//	}
+
+//	public void setTaxedPrice(BigDecimal taxedPrice) {
+//		this.taxedPrice = taxedPrice;
+//	}
+
+//	public BigDecimal getTaxes() {
+//		
+//		taxes = BigDecimal.ZERO;
+//		
+//		if((null != price && price.compareTo(BigDecimal.ZERO) > 0)){
+//			if(StringUtils.isNotEmpty(typeOfProduct) &&  Arrays.asList(Constants.BASIC_TAX).contains(typeOfProduct)){
+//				logger.error("1.");
+////				taxes = price/100*Constants.TAX;
+////				logger.error("1.price = "+price);
+////				logger.error("1.price.divide(new BigDecimal(100)) = "+price.divide(new BigDecimal(100)));
+//				taxes = (price.divide(new BigDecimal(100))).multiply(Constants.TAX);
+//				taxedPrice = price.add(taxes);
+////				logger.error("1.taxes = "+taxes);
+//			}
+//			
+//			if(StringUtils.isNotEmpty(flagImported) && flagImported.equalsIgnoreCase(Constants.FLAG_IMPORTED_Y)){
+//				logger.error("2."+taxedPrice);
+////				taxes = taxedPrice/100*Constants.IMPORT_TAX;
+//				taxes = taxes.add((taxedPrice.divide(new BigDecimal(100))).multiply(Constants.IMPORT_TAX));
+//			}
+//			logger.error("taxes = "+taxes);
+//		}
+//		
+//		return taxes;
+//	}
+
+//	public void setTaxes(BigDecimal taxes) {
+//		this.taxes = taxes;
+//	}
 	
 }
