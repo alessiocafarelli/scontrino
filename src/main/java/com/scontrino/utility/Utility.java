@@ -65,11 +65,11 @@ public class Utility {
 						imported = Constants.IMPORTED_DESC + " ";
 					}
 					
-					logger.debug(imported + receipt.getProductsList().get(i).getDescription() + Constants.DOUBLE_DOT + " " + calculateTax(receipt.getProductsList().get(i)).getTaxedPrice());
+					logger.debug(Constants.NUMBER_1 + Constants.BLANK_SPACE + imported + receipt.getProductsList().get(i).getDescription() + Constants.DOUBLE_DOT + Constants.BLANK_SPACE + calculateTax(receipt.getProductsList().get(i)).getTaxedPrice());
 				}
 				
-				logger.debug(Constants.SALES_TAXES + Constants.DOUBLE_DOT + " " + receipt.getTotalTax());
-		        logger.debug(Constants.TOTAL + Constants.DOUBLE_DOT + " " + receipt.getTotalCost());
+				logger.debug(Constants.SALES_TAXES + Constants.DOUBLE_DOT + Constants.BLANK_SPACE + receipt.getTotalTax());
+		        logger.debug(Constants.TOTAL + Constants.DOUBLE_DOT + Constants.BLANK_SPACE + receipt.getTotalCost());
 				
 		        logger.debug("===========================================");
 				

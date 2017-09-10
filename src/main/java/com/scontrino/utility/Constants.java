@@ -33,6 +33,8 @@ public class Constants {
 	public final static String IMPORTED_DESC = "imported";
 	
 	public final static String DOUBLE_DOT = ":";
+	public final static String NUMBER_1 = "1";
+	public final static String BLANK_SPACE = " ";
 	
 	public final static String[] BASIC_TAX = {"2","5"};
 	public final static String[] TAX_EXEMPT = {"1","3","4","6","7"};
